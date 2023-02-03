@@ -10,27 +10,51 @@ namespace Data.Repositories
     public class ContactsRepository
     {
 
-        /*private ContactsContext context { get; set; }
+        private ContactsContext context { get; set; }
        
         public ContactsRepository(ContactsContext _context)
         {
             context = _context;
-        }*/
+        }
 
         public IQueryable<Contact> GetContacts()
         {
-            return null;//context.Contacts;
+            return context.Contacts;
         }
 
-        public void AddContact(Contact c) 
+        public Contact GetContact(int id)
         {
-            /*context.Contacts.Add(c);
-            context.SaveChanges();*/
+            return context.Contacts.SingleOrDefault(x => x.Id == id);
         }
 
-        /*public Contact GetContacts(int id)
+        public void AddContact(Contact c)
         {
-            //return context.Contacts.SingleOrDefault(x => x.Id == id);
+            context.Contacts.Add(c);
+            context.SaveChanges();
+        }
+
+        public void DeleteContact(Contact i)
+        {
+            context.Contacts.Remove(i);
+            context.SaveChanges();
+        }
+
+        /*public void EditItem(Contact updatedItem)
+        {
+            //1. get the original item from the db
+
+            var originalItem = GetContact(updatedItem.Id); //the Id should never be allowed to change
+
+            //2. update the details which were supposed to be updated one by one
+
+            originalItem.Name = updatedItem.Name;
+            originalItem.PhotoPath = updatedItem.PhotoPath;
+            originalItem.Price = updatedItem.Price;
+            originalItem.Stock = updatedItem.Stock;
+            originalItem.Description = updatedItem.Description;
+            originalItem.CategoryId = updatedItem.CategoryId; //we change the foreign key NOT  the navigational property
+
+            context.SaveChanges();
         }*/
 
     }
