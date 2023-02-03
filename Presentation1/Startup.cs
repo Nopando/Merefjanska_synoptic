@@ -1,6 +1,9 @@
+using Data.Context;
+using Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,10 +23,31 @@ namespace Presentation1
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ContactsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDefaultIdentity<CustomUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                //.AddEntityFrameworkStores<ShoppingCartContext>();
             services.AddControllersWithViews();
+            services.AddRazorPages();
+
+            //services.AddScoped<ItemsServices>();
+            /*services.AddScoped<ContactsRepository>();
+
+            string approach = Configuration.GetSection("approach").Value;
+
+            if (approach == "db")
+            {
+                services.AddScoped<ICategoriesRepository, CategoriesRepository>();
+            }
+            else
+            {
+                FileInfo fi = new FileInfo(@"C:\Users\attar\source\repos\SWD62AEP2022v1\WebApplication1\Data\categories.txt");
+                //reads categories from a file
+                services.AddScoped<ICategoriesRepository, CategoriesFileRepository>(x => new CategoriesFileRepository(fi));
+            }
+
+            services.AddScoped<CategoriesServices>();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,6 +56,7 @@ namespace Presentation1
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //app.UseDatabaseErrorPage();
             }
             else
             {
@@ -44,6 +69,7 @@ namespace Presentation1
 
             app.UseRouting();
 
+            //app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

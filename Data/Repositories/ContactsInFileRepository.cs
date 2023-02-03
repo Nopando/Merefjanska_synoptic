@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Data.Repositories
 {
-    internal class ContactsInFileRepository
+    public class ContactsInFileRepository
     {
     }
 }
