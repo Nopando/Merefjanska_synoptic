@@ -52,5 +52,20 @@ namespace Presentation1.Controllers
             var list = contactsService.GetContacts();
             return View(list);
         }
+
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                contactsService.DeleteContact(id);
+                TempData["message"] = "Contact has been deleted";
+
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = "Contact has not been deleted";
+            }
+            return RedirectToAction("List");
+        }
     }
 }

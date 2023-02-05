@@ -13,7 +13,6 @@ namespace Data.Context
         public ContactsContext(DbContextOptions<ContactsContext> options) : base(options)
         {
         }
-
         public DbSet<Contact> Contacts { get; set; }
 
     }

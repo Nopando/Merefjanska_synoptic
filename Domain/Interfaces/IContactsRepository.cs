@@ -11,5 +11,7 @@ namespace Domain.Interfaces
         IQueryable<Contact> GetContacts();
 
         void AddContact(Contact c);
+
+        void DeleteContact(Contact c);
     }
 }

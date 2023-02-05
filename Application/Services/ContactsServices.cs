@@ -32,12 +32,12 @@ namespace Application.Services
             }
         }
 
-        /*public void DeleteContact(int id)
+        public void DeleteContact(int id)
         {
             var contact = ir.GetContact(id);
             if (contact != null)
                 ir.DeleteContact(contact);
-        }*/
+        }
 
         public IQueryable<ContactViewModel> GetContacts()
         {
@@ -54,28 +54,17 @@ namespace Application.Services
 
         }
 
-        /*public ContactViewModel GetContact(int id)
+/*        public void EditContact(int id, CreateContactViewModel updatedContact)
         {
-            return GetContacts().SingleOrDefault(x => x.Id == id);
-        }*/
-
-        /*public void EditItem(int id, CreateItemViewModel updatedItem)
-        {
-            ir.EditItem(
-                new Domain.Models.Item()
+            ir.EditContact(
+                new Domain.Models.Contact()
                 {
                     Id = id,
-                    CategoryId = updatedItem.CategoryId,
-                    Description = updatedItem.Description,
-                    Name = updatedItem.Name,
-                    PhotoPath = updatedItem.PhotoPath,
-                    Price = updatedItem.Price,
-                    Stock = updatedItem.Stock
-                }
-                );
-
+                    Name = updatedContact.Name,
+                    Surname = updatedContact.Surname,
+                    MobileNo = updatedContact.MobileNo,
+                    PicturePath = updatedContact.PicturePath
+                });
         }*/
-
     }
-
 }

@@ -1,4 +1,5 @@
 ﻿using Data.Context;
+using Domain.Interfaces;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Data.Repositories
 {
-    public class ContactsRepository
+    public class ContactsRepository : IContactsRepository
     {
 
         private ContactsContext context { get; set; }
@@ -33,26 +34,20 @@ namespace Data.Repositories
             context.SaveChanges();
         }
 
-        /*public void DeleteContact(Contact i)
+        public void DeleteContact(Contact c)
         {
-            context.Contacts.Remove(i);
+            context.Contacts.Remove(c);
             context.SaveChanges();
-        }*/
+        }
 
-        /*public void EditItem(Contact updatedItem)
+/*        public void EditContact(Contact updatedContact)
         {
-            //1. get the original item from the db
+            var originalContact = GetContact(updatedContact.Id);
 
-            var originalItem = GetContact(updatedItem.Id); //the Id should never be allowed to change
-
-            //2. update the details which were supposed to be updated one by one
-
-            originalItem.Name = updatedItem.Name;
-            originalItem.PhotoPath = updatedItem.PhotoPath;
-            originalItem.Price = updatedItem.Price;
-            originalItem.Stock = updatedItem.Stock;
-            originalItem.Description = updatedItem.Description;
-            originalItem.CategoryId = updatedItem.CategoryId; //we change the foreign key NOT  the navigational property
+            originalContact.Name = updatedContact.Name;
+            originalContact.Surname = updatedContact.Surname;
+            originalContact.MobileNo = updatedContact.MobileNo;
+            originalContact.PicturePath = updatedContact.PicturePath;
 
             context.SaveChanges();
         }*/
