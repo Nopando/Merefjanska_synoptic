@@ -7,8 +7,6 @@ namespace Application.ViewModels
 {
     public class CreateContactViewModel
     {
-        //public List<CategoryViewModel> Categories { get; set; }
-
         [Required(AllowEmptyStrings = false, ErrorMessage = "Name cannot be blank!")]
         public string Name { get; set; }
 

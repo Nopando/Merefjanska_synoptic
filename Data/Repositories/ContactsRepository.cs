@@ -33,11 +33,11 @@ namespace Data.Repositories
             context.SaveChanges();
         }
 
-        public void DeleteContact(Contact i)
+        /*public void DeleteContact(Contact i)
         {
             context.Contacts.Remove(i);
             context.SaveChanges();
-        }
+        }*/
 
         /*public void EditItem(Contact updatedItem)
         {

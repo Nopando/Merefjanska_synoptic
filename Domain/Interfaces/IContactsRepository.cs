@@ -8,8 +8,8 @@ namespace Domain.Interfaces
 {
     public interface IContactsRepository
     {
-        /*IQueryable<Contact> GetContacts();
+        IQueryable<Contact> GetContacts();
 
-        void AddContact(Contact c);*/
+        void AddContact(Contact c);
     }
 }

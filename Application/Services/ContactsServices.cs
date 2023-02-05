@@ -32,12 +32,12 @@ namespace Application.Services
             }
         }
 
-        public void DeleteContact(int id)
+        /*public void DeleteContact(int id)
         {
             var contact = ir.GetContact(id);
             if (contact != null)
                 ir.DeleteContact(contact);
-        }
+        }*/
 
         public IQueryable<ContactViewModel> GetContacts()
         {
@@ -57,17 +57,6 @@ namespace Application.Services
         /*public ContactViewModel GetContact(int id)
         {
             return GetContacts().SingleOrDefault(x => x.Id == id);
-        }*/
-
-
-        /*public IQueryable<ItemViewModel> Search(string keyword)
-        {
-            return GetItems().Where(x => x.Name.Contains(keyword)); // Like %%
-        }*/
-
-        /*public IQueryable<ItemViewModel> Search(string keyword, double minPrice, double maxPrice)
-        {
-            return Search(keyword).Where(x => x.Price >= minPrice && x.Price <= maxPrice);
         }*/
 
         /*public void EditItem(int id, CreateItemViewModel updatedItem)

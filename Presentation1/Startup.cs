@@ -1,3 +1,4 @@
+using Application.Services;
 using Data.Context;
 using Data.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -31,26 +32,10 @@ namespace Presentation1
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            //services.AddScoped<ItemsServices>();
-            /*services.AddScoped<ContactsRepository>();
-
-            string approach = Configuration.GetSection("approach").Value;
-
-            if (approach == "db")
-            {
-                services.AddScoped<ICategoriesRepository, CategoriesRepository>();
-            }
-            else
-            {
-                FileInfo fi = new FileInfo(@"C:\Users\attar\source\repos\SWD62AEP2022v1\WebApplication1\Data\categories.txt");
-                //reads categories from a file
-                services.AddScoped<ICategoriesRepository, CategoriesFileRepository>(x => new CategoriesFileRepository(fi));
-            }
-
-            services.AddScoped<CategoriesServices>();*/
+            services.AddScoped<ContactsServices>();
+            services.AddScoped<ContactsRepository>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -61,7 +46,6 @@ namespace Presentation1
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
