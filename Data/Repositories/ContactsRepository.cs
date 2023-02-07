@@ -40,17 +40,5 @@ namespace Data.Repositories
             context.SaveChanges();
         }
 
-/*        public void EditContact(Contact updatedContact)
-        {
-            var originalContact = GetContact(updatedContact.Id);
-
-            originalContact.Name = updatedContact.Name;
-            originalContact.Surname = updatedContact.Surname;
-            originalContact.MobileNo = updatedContact.MobileNo;
-            originalContact.PicturePath = updatedContact.PicturePath;
-
-            context.SaveChanges();
-        }*/
-
     }
 }

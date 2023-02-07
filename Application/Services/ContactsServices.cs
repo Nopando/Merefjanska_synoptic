@@ -1,5 +1,7 @@
 ﻿using Application.ViewModels;
 using Data.Repositories;
+using Domain.Interfaces;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,20 +11,19 @@ namespace Application.Services
 {
     public class ContactsServices
     {
-
-        private ContactsRepository ir;
+        private ContactsRepository cr;
         public ContactsServices(ContactsRepository _contactRepository)
         {
-            ir = _contactRepository;
+            cr = _contactRepository;
         }
 
         public void AddContact(CreateContactViewModel contact)
         {
-            if (ir.GetContacts().Any(myContact => myContact.MobileNo == contact.MobileNo))
+            if (cr.GetContacts().Any(myContact => myContact.MobileNo == contact.MobileNo))
                 throw new Exception("Contact with the same mobile number already exists!");
             else
             {
-                ir.AddContact(new Domain.Models.Contact()
+                cr.AddContact(new Domain.Models.Contact()
                 {
                     Name = contact.Name,
                     Surname = contact.Surname,
@@ -34,37 +35,24 @@ namespace Application.Services
 
         public void DeleteContact(int id)
         {
-            var contact = ir.GetContact(id);
+            var contact = cr.GetContact(id);
             if (contact != null)
-                ir.DeleteContact(contact);
+                cr.DeleteContact(contact);
         }
 
         public IQueryable<ContactViewModel> GetContacts()
         {
-            var list = from i in ir.GetContacts() 
+            var list = from c in cr.GetContacts() 
                        select new ContactViewModel()
                        {
-                           Id = i.Id,
-                           Name = i.Name,
-                           Surname = i.Surname,
-                           MobileNo= i.MobileNo,
-                           PicturePath = i.PicturePath
+                           Id = c.Id,
+                           Name = c.Name,
+                           Surname = c.Surname,
+                           MobileNo= c.MobileNo,
+                           PicturePath = c.PicturePath
                        };
             return list;
 
         }
-
-/*        public void EditContact(int id, CreateContactViewModel updatedContact)
-        {
-            ir.EditContact(
-                new Domain.Models.Contact()
-                {
-                    Id = id,
-                    Name = updatedContact.Name,
-                    Surname = updatedContact.Surname,
-                    MobileNo = updatedContact.MobileNo,
-                    PicturePath = updatedContact.PicturePath
-                });
-        }*/
     }
 }
